@@ -1,48 +1,41 @@
-// Last updated: 11/20/2025, 7:05:15 AM
-
+// Last updated: 11/20/2025, 7:06:10 AM
 class Solution {
     public boolean isBipartite(int[][] graph) {
-        // Acyclic always bipartite
-        // odd length ka cyclic graph never bipartite
-        Queue<BipartitePair> q = new LinkedList<>();
+        Queue<Bipartite_pair> q = new LinkedList<>();
         HashMap<Integer,Integer> visited = new HashMap<>();
-        for(int i =0;i<graph.length;i++){
-            if(visited.containsKey(i)){
+        for(int key =0;key<graph.length;key++){
+            if(visited.containsKey(key)){
                 continue;
             }
-            q.add(new BipartitePair(i,0));
+            q.add(new Bipartite_pair(key,0));
             while(!q.isEmpty()){
-                // 1. remove
-                BipartitePair rp = q.poll();
-                // 2.ignore
-                if(visited.containsKey(rp.vtx)){
-                    if(visited.get(rp.vtx)!=rp.dis){
-                        return false;
-                    }
-                    continue;
-
+            Bipartite_pair rv = q.poll();
+            if(visited.containsKey(rv.vtx)){
+                if(visited.get(rv.vtx)!=rv.dis){
+                    return false;
                 }
-                // 3. marked visited
-                visited.put(rp.vtx,rp.dis);
-                // 4.self work
-                // 5.Add the unvisited nbrs
-                for(int nbrs : graph[rp.vtx]){
-                    if(!visited.containsKey(nbrs)){
-                        q.add(new BipartitePair(nbrs,rp.dis + 1));
-                    }
-                }
+                continue;
 
             }
+            visited.put(rv.vtx,rv.dis);
+            for(int nbrs:graph[rv.vtx]){
+                if(!visited.containsKey(nbrs)){
+                    q.add(new Bipartite_pair(nbrs,rv.dis+1));
+                }
+            }
+            }
 
-        } 
+        }
         return true;
+        
+        
     }
-}
-class BipartitePair{
-    int vtx;
-    int dis;
-    public BipartitePair(int vtx,int dis){
-        this.vtx = vtx;
-        this.dis = dis;
+    class Bipartite_pair{
+        int vtx;
+        int dis;
+        public Bipartite_pair(int vtx,int dis){
+            this.vtx = vtx;
+            this.dis = dis;
+        }
     }
 }
