@@ -1,4 +1,4 @@
-// Last updated: 11/17/2025, 11:51:37 PM
+// Last updated: 11/20/2025, 7:05:15 AM
 
 class Solution {
     public boolean isBipartite(int[][] graph) {
