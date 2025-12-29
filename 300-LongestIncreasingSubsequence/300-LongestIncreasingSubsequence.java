@@ -1,39 +1,35 @@
-// Last updated: 9/17/2025, 12:08:25 PM
-class Solution {
-    public int lengthOfLIS(int[] nums) {
-        return (LIS(nums));
-        
-    }
-    public static int LIS(int []arr){
-        int [] dp = new int[arr.length];
-        int len =1;
-        dp[0] = arr[0];
-        for(int i =1;i<dp.length;i++){
-            if(arr[i]>dp[len -1]){
-                dp[len] = arr[i];
-                len++;
-            }else{
-                int idx = BinarySearch(dp,0,len-1,arr[i]);
-                dp[idx]=arr[i];
-            }
-        }
-        return len;
-    }
-    public static int BinarySearch(int[] dp,int si,int ei,int item){
-        int idx =0;
-        while(si<=ei){
-            int mid =(si+ei)/2;
-            if(dp[mid]>=item){
-                idx = mid;
-                ei=mid-1;
-
-            }
-            else{
-                si= mid+1;
-
-            }
-        }
-        return idx;
-    }
-    
-}
+// Last updated: 12/29/2025, 10:07:49 AM
+1class Solution {
+2    public int lengthOfLIS(int[] nums) {
+3        int[] dp = new int[nums.length];
+4        dp[0]  = nums[0];
+5        int len = 1;
+6        for(int i =1;i<nums.length;i++){
+7            if(nums[i]>dp[len-1]){
+8                dp[len] = nums[i];
+9                len++;
+10            }
+11            else{
+12                int idx = binarySearch(dp,0,len-1,nums[i]);
+13                dp[idx] = nums[i];
+14            }
+15        }
+16        return len;
+17        
+18    }
+19    public static int binarySearch(int[] arr,int si,int ei,int item){
+20        int idx = 0;
+21        while(si<=ei){
+22            int mid = (si+ei)/2;
+23            if(arr[mid]>=item){
+24                idx = mid;
+25                ei = mid-1;
+26            }
+27            else{
+28                si = mid+1;
+29            }
+30
+31        }
+32        return idx;
+33    }
+34}
