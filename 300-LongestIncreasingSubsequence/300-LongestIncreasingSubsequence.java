@@ -1,4 +1,4 @@
-// Last updated: 12/29/2025, 10:07:49 AM
+// Last updated: 12/30/2025, 9:15:43 PM
 1class Solution {
 2    public int lengthOfLIS(int[] nums) {
 3        int[] dp = new int[nums.length];
