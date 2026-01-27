@@ -1,4 +1,4 @@
-// Last updated: 1/27/2026, 11:30:35 PM
+// Last updated: 1/27/2026, 11:30:55 PM
 1class Solution {
 2    public void setZeroes(int[][] matrix) {
 3        int[] row = new int[matrix.length];
@@ -22,12 +22,5 @@
 21        }
 22        
 23    }
-24    static {
-25        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
-26            try (java.io.FileWriter fw = new java.io.FileWriter("display_runtime.txt")) {
-27                fw.write("0");
-28            } catch (Exception e) {
-29            }
-30        }));
-31    }
-32}
+24    
+25}
