@@ -1,4 +1,4 @@
-// Last updated: 2/15/2026, 10:55:56 PM
+// Last updated: 2/15/2026, 10:59:24 PM
 1class Solution {
 2    public double champagneTower(int poured, int query_row, int query_glass) {
 3        double[][] tower = new double[102][102];
