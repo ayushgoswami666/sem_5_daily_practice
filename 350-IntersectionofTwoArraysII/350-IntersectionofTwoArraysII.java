@@ -1,51 +1,32 @@
-// Last updated: 1/13/2026, 3:08:35 PM
+// Last updated: 5/17/2026, 12:31:22 PM
 1class Solution {
-2    public int longestConsecutive(int[] nums) {
-3
-4        // HashSet<Integer> set = new HashSet<>();
-5        // int ans =0;
-6        // for(int i=0;i<nums.length;i++){
-7        //     set.add(nums[i]);
-8
-9        // }
-10        // for(int i=0;i<nums.length;i++){
-11        //     if(!set.contains(nums[i]-1)){
-12        //         int c =0;
-13        //         int key=nums[i];
-14
-15        //         while(set.contains(key)){
-16        //             set.remove(key);
-17        //             c++;
-18        //             key++;
-19        //         }
-20        //         ans= Math.max(ans,c);
-21        //     }
-22        // }
-23        // return ans;
-24        HashMap<Integer,Boolean> map = new HashMap<>();
-25        for(int i =0;i<nums.length;i++){
-26            if(map.containsKey(nums[i]-1)){
-27                map.put(nums[i],false);
-28            }
-29            else{
-30                map.put(nums[i],true);
-31            }
-32            if(map.containsKey(nums[i]+1)){
-33                map.put(nums[i]+1,false);
-34            }
-35        }
-36        int ans = 0;
-37        for(int key : map.keySet()){
-38            if(map.get(key)){
-39                int count= 0;
-40                while(map.containsKey(key)){
-41                    count++;
-42                    key++;
-43                }
-44                ans = Math.max(ans,count);
-45            }
-46        }
-47        return ans;
-48        
-49    }
-50}
+2    public int[] intersect(int[] nums1, int[] nums2) {
+3        return Two_arr(nums1,nums2);
+4        
+5    }public static int[] Two_arr(int[] nums1,int[] nums2){
+6        HashMap<Integer,Integer> map = new HashMap<>();
+7        for(int i =0;i<nums1.length;i++){
+8            if(map.containsKey(nums1[i])){
+9                int v = map.get(nums1[i]);
+10                map.put(nums1[i],v+1);
+11            }
+12            else{
+13                map.put(nums1[i],1);
+14            }
+15        }
+16        List<Integer> ll = new ArrayList<>();
+17        for(int i =0;i<nums2.length;i++){
+18            if(map.containsKey(nums2[i]) && map.get(nums2[i])>0){
+19                ll.add(nums2[i]);
+20                int v = map.get(nums2[i]);
+21                map.put(nums2[i],v-1);
+22
+23            }
+24        }
+25        int[] arr = new int[ll.size()];
+26        for(int i=0;i<arr.length;i++){
+27            arr[i] = ll.get(i);
+28        }
+29        return arr;
+30    }
+31}
